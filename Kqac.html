@@ -210,29 +210,6 @@
         const music = document.getElementById('backgroundMusic');
         const video = document.getElementById('backgroundVideo');
 
-        blackOverlay.addEventListener('click', () => {
-            music.volume = 0;
-            music.play();
-
-            let volumeIncreaseInterval = setInterval(() => {
-                if (music.volume < 1) {
-                    music.volume = Math.min(music.volume + 0.1, 1);
-                } else {
-                    clearInterval(volumeIncreaseInterval);
-                }
-            }, 200);
-
-            blackOverlay.style.opacity = '0';
-            video.style.display = 'block';
-            video.style.opacity = '1';
-
-            video.play();
-
-            setTimeout(() => {
-                blackOverlay.style.display = 'none';
-            }, 2000);
-        });
-
         const originalTitle = "@Kqac";
         const deleteSpeed = 300;
         const typingSpeed = 300;
@@ -264,7 +241,31 @@
 
         window.onload = () => {
             typeTitle();
-            video.style.display = 'none';
+
+            // Show and play video immediately
+            video.style.display = 'block';
+            video.style.opacity = '1';
+            video.play();
+
+            // Play music with smooth fade-in
+            music.volume = 0;
+            music.play().then(() => {
+                let volumeIncreaseInterval = setInterval(() => {
+                    if (music.volume < 1) {
+                        music.volume = Math.min(music.volume + 0.1, 1);
+                    } else {
+                        clearInterval(volumeIncreaseInterval);
+                    }
+                }, 200);
+            }).catch((e) => {
+                console.warn("Autoplay blocked:", e);
+            });
+
+            // Hide black overlay
+            blackOverlay.style.opacity = '0';
+            setTimeout(() => {
+                blackOverlay.style.display = 'none';
+            }, 2000);
         };
     </script>
 </body>
