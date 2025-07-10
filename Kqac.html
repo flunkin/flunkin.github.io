@@ -8,9 +8,9 @@
 
     <link rel="icon" href="assets/Holy Cross Silver.ico" type="image/x-icon" />
 
-    <link
-        href="https://fonts.google.com/noto/specimen/Noto+Sans+Display?preview.text=misery302&query=ancient"
+    <link href="https://fonts.google.com/noto/specimen/Noto+Sans+Display?preview.text=misery302&query=ancient"
         rel="stylesheet" />
+
     <style>
         * {
             margin: 0;
@@ -166,6 +166,9 @@
             <a href="https://github.com/Flunkin" target="_blank">
                 <img src="assets/Github_white.svg" class="icon" alt="Github" />
             </a>
+            <a href="https://steamcommunity.com/id/Flunkin/" target="_blank">
+                <img src="assets/Steam_white.svg" class="icon" alt="Steam" />
+            </a>
         </div>
     </div>
 
@@ -186,12 +189,9 @@
             raindrop.classList.add('raindrop');
 
             raindrop.style.left = Math.random() * 100 + 'vw';
-
             const duration = 2 + Math.random() * maxRaindropDuration;
             raindrop.style.animationDuration = `${duration}s`;
-
             raindrop.style.animationDelay = Math.random() * -5 + 's';
-
             raindrop.style.setProperty('--direction', Math.random() * 2 - 1);
 
             rainContainer.appendChild(raindrop);
@@ -242,12 +242,10 @@
         window.onload = () => {
             typeTitle();
 
-            // Show and play video immediately
             video.style.display = 'block';
             video.style.opacity = '1';
             video.play();
 
-            // Play music with smooth fade-in
             music.volume = 0;
             music.play().then(() => {
                 let volumeIncreaseInterval = setInterval(() => {
@@ -261,7 +259,6 @@
                 console.warn("Autoplay blocked:", e);
             });
 
-            // Hide black overlay
             blackOverlay.style.opacity = '0';
             setTimeout(() => {
                 blackOverlay.style.display = 'none';
